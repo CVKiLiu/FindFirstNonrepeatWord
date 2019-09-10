@@ -1,21 +1,30 @@
 package tests
+
 import (
-	"FindFirstNonrepeatWord"
+	"FindFirstNonrepeatWord/Util"
+	"FindFirstNonrepeatWord/findx"
 	"fmt"
 	"testing"
 )
 
-func TestCreateLargeFile(t *testing.T){
-	FindFirstNonrepeatWord.CreateLargeFile(1024, "TestCreateLargeFile.txt")
+func TestCreateLargeFile(t *testing.T) {
+	Util.CreateLargeFile(1024*1024, "TestCreateLargeFile.txt")
 }
 
-func TestSplitLargeFile(t *testing.T){
+func TestSplitLargeFile(t *testing.T) {
 	largeFileName := "TestSplitLargeFile.txt"
 	smallFileName := "TestSplitLargeFile_small"
-	FindFirstNonrepeatWord.CreateLargeFile(1024 * 1024 * 1024, largeFileName)
-	FindFirstNonrepeatWord.SplitLargeFile(10, largeFileName, "", smallFileName, 1024 * 1024 * 1024)
+	Util.CreateLargeFile(10*1024, largeFileName)
+	findx.SplitLargeFile(10, largeFileName, "textGenerate", smallFileName, 1024*1024)
 }
 
 func TestBKDRHash(t *testing.T) {
-	fmt.Println(FindFirstNonrepeatWord.BKDRHash("1234567890abcdefghijklmnopqrstuvwsyz"))
+	fmt.Println(Util.BKDRHash("1234567890abcdefghijklmnopqrstuvwsyz"))
+	fmt.Println(Util.BKDRHash("1234567890abcdefghijklmnopqrstuvwsyz"))
+	fmt.Println(Util.BKDRHash("1234567890abcdefghijklmnopqrstuvwsy_"))
+}
+
+func TestGetFileSize(t *testing.T) {
+	filename := "TestSplitLargeFile.txt"
+	fmt.Println(Util.GetFileSize(filename))
 }

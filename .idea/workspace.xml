@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9809549-8591-4e16-80a6-4690f717efe2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/filehandler_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/fileUtil.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/stringhash.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/findx/find.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/findx/wordinfo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/findx/wordinfoheap.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/wordinfoheap_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filehandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/filehandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filehandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/findx/filehandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/find.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/filehandler_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/filehandler_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +53,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Go\src\FindFirstNonrepeatWord\findx" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -59,7 +70,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestCreateLargeFile in FindFirstNonrepeatWord/tests">
+  <component name="RunManager" selected="Go Test.TestBKDRHash in FindFirstNonrepeatWord/tests">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="FindFirstDifferentString" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="FindFirstNonrepeatWord" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestBKDRHash in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/tests" />
@@ -71,7 +91,7 @@
       <pattern value="^TestBKDRHash$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestCreateLargeFile in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestGetFileSize in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/tests" />
       <framework value="gotest" />
@@ -79,10 +99,10 @@
       <package value="FindFirstNonrepeatWord/tests" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestCreateLargeFile$" />
+      <pattern value="^TestGetFileSize$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestSplitLargeFile in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSplitLargeFile in FindFirstNonrepeatWord/tests (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/tests" />
       <framework value="gotest" />
@@ -93,11 +113,24 @@
       <pattern value="^TestSplitLargeFile$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestWordInfoHeapPop in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="FindFirstDifferentString" />
+      <working_directory value="$PROJECT_DIR$/tests" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="FindFirstNonrepeatWord/tests" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestWordInfoHeapPop$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestCreateLargeFile in FindFirstNonrepeatWord/tests" />
-        <item itemvalue="Go Test.TestSplitLargeFile in FindFirstNonrepeatWord/tests" />
         <item itemvalue="Go Test.TestBKDRHash in FindFirstNonrepeatWord/tests" />
+        <item itemvalue="Go Test.TestGetFileSize in FindFirstNonrepeatWord/tests" />
+        <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Test.TestWordInfoHeapPop in FindFirstNonrepeatWord/tests" />
+        <item itemvalue="Go Test.TestSplitLargeFile in FindFirstNonrepeatWord/tests (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -109,21 +142,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/tests/filehandler_test.go</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
