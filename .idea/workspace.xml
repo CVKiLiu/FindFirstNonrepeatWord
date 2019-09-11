@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9809549-8591-4e16-80a6-4690f717efe2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Util/fileUtil.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Util/stringhash.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/findx/find.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/findx/wordinfo.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/findx/wordinfoheap.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/wordinfoheap_test.go" afterDir="false" />
+    <list default="true" id="a9809549-8591-4e16-80a6-4690f717efe2" name="Default Changelist" comment="feat(all) add some func for solving problem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filehandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/findx/filehandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/find.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/fileUtil.go" beforeDir="false" afterPath="$PROJECT_DIR$/Util/fileUtil.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findx/filehandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/findx/filehandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findx/find.go" beforeDir="false" afterPath="$PROJECT_DIR$/findx/find.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findx/wordinfo.go" beforeDir="false" afterPath="$PROJECT_DIR$/findx/wordinfo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/filehandler_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/filehandler_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/wordinfoheap_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/wordinfoheap_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +38,7 @@
   <component name="ProjectId" id="1QaAHcc7TV8Gjt1VkTKhKTj5GRU" />
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
@@ -51,10 +50,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.goide.configuration.GoLibrariesConfigurableProvider" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Go\src\FindFirstNonrepeatWord\tests" />
+      <recent name="D:\Go\src\FindFirstNonrepeatWord\Util" />
       <recent name="D:\Go\src\FindFirstNonrepeatWord\findx" />
     </key>
   </component>
@@ -70,7 +72,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestBKDRHash in FindFirstNonrepeatWord/tests">
+  <component name="RunManager" selected="Go Build.go build main.go">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -91,7 +93,7 @@
       <pattern value="^TestBKDRHash$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestGetFileSize in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCreateLargeFile in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/tests" />
       <framework value="gotest" />
@@ -99,10 +101,10 @@
       <package value="FindFirstNonrepeatWord/tests" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestGetFileSize$" />
+      <pattern value="^TestCreateLargeFile$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestSplitLargeFile in FindFirstNonrepeatWord/tests (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSplitOverSizeSmallFile in FindFirstNonrepeatWord/tests (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/tests" />
       <framework value="gotest" />
@@ -110,10 +112,10 @@
       <package value="FindFirstNonrepeatWord/tests" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestSplitLargeFile$" />
+      <pattern value="^TestSplitOverSizeSmallFile$" />
       <method v="2" />
     </configuration>
-    <configuration name="TestWordInfoHeapPop in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSplitOverSizeSmallFile in FindFirstNonrepeatWord/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="FindFirstDifferentString" />
       <working_directory value="$PROJECT_DIR$/tests" />
       <framework value="gotest" />
@@ -121,16 +123,16 @@
       <package value="FindFirstNonrepeatWord/tests" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestWordInfoHeapPop$" />
+      <pattern value="^TestSplitOverSizeSmallFile$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestBKDRHash in FindFirstNonrepeatWord/tests" />
-        <item itemvalue="Go Test.TestGetFileSize in FindFirstNonrepeatWord/tests" />
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Test.TestWordInfoHeapPop in FindFirstNonrepeatWord/tests" />
-        <item itemvalue="Go Test.TestSplitLargeFile in FindFirstNonrepeatWord/tests (2)" />
+        <item itemvalue="Go Test.TestCreateLargeFile in FindFirstNonrepeatWord/tests" />
+        <item itemvalue="Go Test.TestSplitOverSizeSmallFile in FindFirstNonrepeatWord/tests (1)" />
+        <item itemvalue="Go Test.TestSplitOverSizeSmallFile in FindFirstNonrepeatWord/tests" />
+        <item itemvalue="Go Test.TestBKDRHash in FindFirstNonrepeatWord/tests" />
       </list>
     </recent_temporary>
   </component>
@@ -149,5 +151,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(all) add some func for solving problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(all) add some func for solving problem" />
   </component>
 </project>

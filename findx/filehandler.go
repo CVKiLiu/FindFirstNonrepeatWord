@@ -9,10 +9,11 @@ import (
 	"strconv"
 	"strings"
 )
+const (
+	oneK = int64(1024)
+)
+func SplitLargeFile(numFile uint64, srcFilePath string, desFilePath string, filename string) uint64{
 
-func SplitLargeFile(numFile int, srcFilePath string, desFilePath string, filename string, smallFileMem int64){
-
-	var oneK = int64(1024)
 	var err error
 	var smallFile []*os.File
 	var bufWriters []*bufio.Writer
@@ -20,13 +21,15 @@ func SplitLargeFile(numFile int, srcFilePath string, desFilePath string, filenam
 	var hashMapMem int64 // memory of all key-value store in hashMap
 	var hashMapMemLimit int64
 
-	_, err = os.Stat(desFilePath)
-	if os.IsNotExist(err) {
-		os.Mkdir(desFilePath, 0711)
-	}
 	smallFile = make([]*os.File, numFile)
 	bufWriters = make([]*bufio.Writer, numFile)
-	for i := 0; i < numFile; i++{
+	if !Util.PathIsExist(desFilePath) {
+		mkDirErr := os.Mkdir(desFilePath, 0711)
+		if mkDirErr != nil {
+			log.Fatal(mkDirErr)
+		}
+	}
+	for i := 0; uint64(i) < numFile; i++{
 		smallFile[i], err = os.OpenFile(desFilePath + "\\" + filename + "_"+ strconv.Itoa(i)+".txt", os.O_CREATE|os.O_APPEND, 0777)
 		if err != nil {
 			log.Fatal(err)
@@ -73,7 +76,7 @@ func SplitLargeFile(numFile int, srcFilePath string, desFilePath string, filenam
 		}
 		index++
 	}
-	for i:=0; i < numFile; i++ {
+	for i:=0; uint64(i) < numFile; i++ {
 		err = bufWriters[i].Flush()
 		if err != nil {
 			log.Fatal(err)
@@ -85,20 +88,70 @@ func SplitLargeFile(numFile int, srcFilePath string, desFilePath string, filenam
 			log.Fatal(err)
 		}
 	}()
+
+	return numFile
 }
 
-func splitOverSizeSmallFile(filename string, smallFileMemLimit int64) int64{
-	var splitNum int64 = 1
+func SplitOverSizeSmallFile(filename string, smallFileMemLimit uint64) uint64{
+	var splitNum uint64 = 1
+	var nanoFile []*os.File
+	var bufWriters []*bufio.Writer
 	fileSuffix := filepath.Ext(filename)
 	filenameOnly := strings.TrimSuffix(filename, fileSuffix)
 	smallFileSize := Util.GetFileSize(filename)
+
 	if smallFileSize > smallFileMemLimit {
-		splitNum = (smallFileSize % smallFileMemLimit) + 1
+		splitNum = (smallFileSize / smallFileMemLimit) + 1
+		nanoFile = make([]*os.File, splitNum)
+		bufWriters = make([]*bufio.Writer, splitNum)
+		for i := 0 ; uint64(i) < splitNum; i++ {
+			var nanoFileErr error
+			nanoFilename := filenameOnly+ "_" + strconv.Itoa(i) + ".txt"
+			nanoFile[i], nanoFileErr = os.OpenFile(nanoFilename, os.O_CREATE | os.O_APPEND, 0777)
+			if nanoFileErr != nil{
+				log.Fatal(nanoFileErr)
+			}
+			bufWriters[i] = bufio.NewWriterSize(nanoFile[i], int(oneK * oneK))
+		}
+		defer func() {
+			for i := 0 ; uint64(i) < splitNum; i++ {
+				flushErr := bufWriters[i].Flush()
+				if flushErr != nil{
+					log.Fatal(flushErr)
+				}
+				closeErr := nanoFile[i].Close()
+				if closeErr != nil {
+					log.Fatal(closeErr)
+				}
+			}
+		}()
+
 		smallFile, err := os.OpenFile(filename, os.O_RDONLY, 0600)
 		if err != nil {
 			log.Fatal(err)
 		}
-		smallFileScanner :=
+		defer func() {
+			closeErr := smallFile.Close()
+			if closeErr != nil {
+				log.Fatal(closeErr)
+			}
+			removeSrcErr := os.Remove(filename)
+			if removeSrcErr != nil {
+				log.Fatal(removeSrcErr)
+			}
+		}()
+
+		smallFileScanner := bufio.NewScanner(smallFile)
+		for smallFileScanner.Scan() {
+			curStr := smallFileScanner.Text()
+			textAndIdx := strings.Split(curStr, ",")
+			hashcode := Util.BKDRHash(textAndIdx[0])
+			hashNum := hashcode % splitNum
+			_, err := bufWriters[hashNum].WriteString(curStr+"\n")
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
 	}
 	return splitNum
 }

@@ -12,7 +12,7 @@ import (
 const INT64_MAX = int64(uint64(1)<<63 - 1)
 
 // FindX return first non-repeated word in text file
-func FindX(filename string) *WordInfo {
+func FindX(filename string) (string, *WordInfo) {
 	var firstNonRepeatWInfo *WordInfo
 	strToWordInfoMap := make(map[string]*WordInfo)
 	//wh := NewWordInfoHeap()
@@ -38,21 +38,21 @@ func FindX(filename string) *WordInfo {
 		idx, _ := strconv.ParseInt(strAndIdx[1], 10, 64)
 		wInfo, ok := strToWordInfoMap[strAndIdx[0]]
 		if !ok {
-			wInfo = NewWordInfo(strAndIdx[0], idx, int64(1))
+			wInfo = NewWordInfo(idx, int64(1))
 			strToWordInfoMap[strAndIdx[0]] = wInfo
 		} else {
 			wInfo.Freq++
 		}
-		//heap.Push(&wh, wInfo)
 	}
 	minIdx := INT64_MAX
-	for _, wi := range strToWordInfoMap {
+	firstStr := ""
+	for str, wi := range strToWordInfoMap {
 		if wi.Freq == int64(1) && wi.Idx < minIdx {
 			minIdx = wi.Idx
 			firstNonRepeatWInfo = wi
+			firstStr = str
 		}
 	}
-	// topWord := heap.Pop(&wh)
 
-	return firstNonRepeatWInfo
+	return firstStr, firstNonRepeatWInfo
 }
