@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9809549-8591-4e16-80a6-4690f717efe2" name="Default Changelist" comment="feat(all) add some func for solving problem">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="a9809549-8591-4e16-80a6-4690f717efe2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Description.md" beforeDir="false" afterPath="$PROJECT_DIR$/Description.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -149,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat(all) add some func for solving problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(all) add some func for solving problem" />
+    <MESSAGE value="docs(all) add some instructions" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs(all) add some instructions" />
   </component>
 </project>
