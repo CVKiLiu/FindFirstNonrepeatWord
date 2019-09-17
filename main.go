@@ -48,6 +48,7 @@ func main() {
 	wordInfos = make([]*findx.WordInfo, numFile)
 	minIdx = findx.Int64Max
 
+	// find the first non-repeated word.
 	dirList, e := ioutil.ReadDir(desFilePath)
 	if e != nil {
 		log.Fatal(e)
