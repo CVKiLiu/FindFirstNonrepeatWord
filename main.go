@@ -1,44 +1,55 @@
 package main
+
 import (
-	"FindFirstNonrepeatWord/Util"
+	sutil "FindFirstNonrepeatWord/Util"
 	"FindFirstNonrepeatWord/findx"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"strconv"
 )
+
 const (
 	oneK = uint64(1024)
 )
+
 func main() {
+
 	var numFile uint64
+	var path string // large file root path
 	var srcFileName string
-	var desFilePath string
+	var srcFilePath string
 	var filename string
+	var desFilePath string
 	var smallFileMem uint64
-	var path string
 
 	numFile = 42
 	path = "text"
 	srcFileName = "sroucetext.txt"
-	srcFilePath := path +"\\" + srcFileName
+	srcFilePath = path + "\\" + srcFileName
 	filename = "smallFile"
 	desFilePath = "smallText"
 	smallFileMem = (5 * oneK * oneK) >> 2
 
-	Util.CreateLargeFile(oneK, path, srcFileName)
+	sutil.CreateLargeFile(oneK, path, srcFileName)
 	findx.SplitLargeFile(numFile, srcFilePath, desFilePath, filename)
+	// re-split oversize small file
 	for i := 0; uint64(i) < numFile; i++ {
 		smallFileName := desFilePath + "\\" + filename + "_" + strconv.Itoa(i) + ".txt"
 		cutCount := findx.SplitOverSizeSmallFile(smallFileName, smallFileMem)
 		numFile += cutCount - 1
 	}
-	wordInfos := make([]*findx.WordInfo, numFile)
-	minIdx := findx.INT64_MAX
+
+	var wordInfos []*findx.WordInfo
 	var minWordInfo *findx.WordInfo
+	var minIdx int64
 	var firstStr string
+
+	wordInfos = make([]*findx.WordInfo, numFile)
+	minIdx = findx.Int64Max
+
 	dirList, e := ioutil.ReadDir(desFilePath)
-	if e != nil{
+	if e != nil {
 		log.Fatal(e)
 	}
 	for i, smallFilename := range dirList {

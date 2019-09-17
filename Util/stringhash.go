@@ -1,4 +1,4 @@
-package Util
+package sutil
 
 func BKDRHash(str string) uint64 {
 	var hashcode uint64 = 0

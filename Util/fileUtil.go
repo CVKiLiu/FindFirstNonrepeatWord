@@ -1,4 +1,4 @@
-package Util
+package sutil
 
 import (
 	"bufio"
@@ -10,17 +10,18 @@ import (
 )
 
 const (
-	StrLenLimit = int64(100)
+	strLenLimit = int64(100)
 	constString = "abcdefghizklmnopqrstuvwsyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$%^&*()"
 )
 
+// PathIsExist judge the existence of path
 func PathIsExist(path string) bool {
 	_, err := os.Stat(path)
-	if err != nil{
-		if os.IsExist(err){
+	if err != nil {
+		if os.IsExist(err) {
 			return true
 		}
-		if os.IsNotExist(err){
+		if os.IsNotExist(err) {
 			return false
 		}
 		return false
@@ -28,9 +29,10 @@ func PathIsExist(path string) bool {
 	return true
 }
 
+// RandStringGenerator generate string randomly
 func RandStringGenerator() string {
 	// strRand := rand.New(rand.NewSource(time.Now().Unix()))
-	strLen, _ := rand.Int(rand.Reader, big.NewInt(StrLenLimit))
+	strLen, _ := rand.Int(rand.Reader, big.NewInt(strLenLimit))
 	strByte := make([]byte, strLen.Int64())
 	for i := 0; i < int(strLen.Int64()); i++ {
 		randIdx, _ := rand.Int(rand.Reader, big.NewInt(73))
@@ -39,16 +41,17 @@ func RandStringGenerator() string {
 	return string(strByte)
 }
 
+// CreateLargeFile create large size file
 func CreateLargeFile(sizeLimit uint64, path string, filename string) {
 
 	fileSize := uint64(0)
-	if !PathIsExist(path){
+	if !PathIsExist(path) {
 		mkDirErr := os.Mkdir(path, 0711)
 		if mkDirErr != nil {
 			log.Fatal(mkDirErr)
 		}
 	}
-	desFile, err := os.OpenFile(path + "\\" + filename, os.O_APPEND|os.O_CREATE, 0600)
+	desFile, err := os.OpenFile(path+"\\"+filename, os.O_APPEND|os.O_CREATE, 0600)
 	desBufWriter := bufio.NewWriterSize(desFile, 1024*1024)
 	defer func() {
 		err := desBufWriter.Flush()
@@ -77,6 +80,7 @@ func CreateLargeFile(sizeLimit uint64, path string, filename string) {
 	}
 }
 
+// GetFileSize return file size
 func GetFileSize(filename string) uint64 {
 	var result uint64
 	err := filepath.Walk(filename, func(path string, f os.FileInfo, err error) error {

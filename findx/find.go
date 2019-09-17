@@ -9,7 +9,8 @@ import (
 	"strings"
 )
 
-const INT64_MAX = int64(uint64(1)<<63 - 1)
+// Int64Max The max value of int64
+const Int64Max = int64(uint64(1)<<63 - 1)
 
 // FindX return first non-repeated word in text file
 func FindX(filename string) (string, *WordInfo) {
@@ -32,6 +33,7 @@ func FindX(filename string) (string, *WordInfo) {
 		}
 	}()
 
+	// read all string and use hashmap to save their frequence and the first idx
 	for srcScanner.Scan() {
 		curStr := srcScanner.Text()
 		strAndIdx := strings.Split(curStr, ",") // [str, idx]
@@ -44,7 +46,9 @@ func FindX(filename string) (string, *WordInfo) {
 			wInfo.Freq++
 		}
 	}
-	minIdx := INT64_MAX
+
+	// find the first non-repeated word
+	minIdx := Int64Max
 	firstStr := ""
 	for str, wi := range strToWordInfoMap {
 		if wi.Freq == int64(1) && wi.Idx < minIdx {
